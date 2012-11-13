@@ -61,6 +61,7 @@
         / /span
         .span9
           / /= render "partials/breadcrumb" if @breadcrumb.present?
+          = bootstrap_flash
           = yield
       / /span
     / /row
