@@ -16,7 +16,9 @@ gem 'barby'
 gem 'chunky_png'
 gem 'rmagick'
 gem 'wicked_pdf'
+
 gem 'capistrano'
+gem 'rvm-capistrano'
 
 # Gemfile in Rails >= 3.1
 gem 'activeadmin'
