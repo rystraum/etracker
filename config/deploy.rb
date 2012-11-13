@@ -1,25 +1,56 @@
-set :application, "set your application name here"
-set :repository,  "set your repository location here"
+require "bundler/capistrano"
+require "rvm/capistrano" 
 
-# set :scm, :git # You can set :scm explicitly or Capistrano will make an intelligent guess based on known version control directory names
-# Or: `accurev`, `bzr`, `cvs`, `darcs`, `git`, `mercurial`, `perforce`, `subversion` or `none`
+set :application, "Asset Management"
+set :repository,  "https://github.com/rystraum/etracker"
 
-role :web, "your web-server here"                          # Your HTTP server, Apache/etc
-role :app, "your app-server here"                          # This may be the same as your `Web` server
-role :db,  "your primary db-server here", :primary => true # This is where Rails migrations will run
-role :db,  "your slave db-server here"
+set :scm, :git
+set :deploy_via, :remote_cache
 
-# if you want to clean up old releases on each deploy uncomment this:
-# after "deploy:restart", "deploy:cleanup"
+set :use_sudo, false
+set :rvm_ruby_string, '1.9.3@default'
+set :rvm_type, :system  # Copy the exact line. I really mean :system here
 
-# if you're still using the script/reaper helper you will need
-# these http://github.com/rails/irs_process_scripts
+ssh_options[:keys] = [File.join(ENV["HOME"],".ssh","blank.pub")]
+ssh_options[:forward_agent] = true
 
-# If you are using Passenger mod_rails uncomment this:
-# namespace :deploy do
-#   task :start do ; end
-#   task :stop do ; end
-#   task :restart, :roles => :app, :except => { :no_release => true } do
-#     run "#{try_sudo} touch #{File.join(current_path,'tmp','restart.txt')}"
-#   end
-# end
+set :deploy_to, "/home/ubuntu/etracker"
+set :user, "ubuntu"
+
+# role :web, "themagisproject.tv"                          # Your HTTP server, Apache/etc
+# role :app, "themagisproject.tv"                          # This may be the same as your `Web` server
+# role :db,  "themagisproject.tv", :primary => true # This is where Rails migrations will run
+
+# ssh_options[:keys] = [File.join(ENV["HOME"], ".ssh", "blank")]
+
+set :rails_env, "production"
+set :domain, "ainventory.loudcloud.ph"
+server "ainventory.loudcloud.ph", :app, :web, :db, :primary => true 
+ 
+namespace :deploy do
+  task :restart, :roles => :web do
+    run "touch #{ current_path }/tmp/restart.txt"
+  end
+end
+
+namespace :assets do
+  desc "Compress assets in a local file"
+  task :compress_assets do
+    set :rails_env, "staging"
+    run_locally("rm -rf public/assets/*")
+    run_locally("bundle exec rake assets:precompile")
+    run_locally("touch assets.tgz && rm assets.tgz")
+    run_locally("tar zcvf assets.tgz public/assets/")
+    run_locally("mv assets.tgz public/assets/")
+  end
+
+  desc "Upload assets"
+  task :upload_assets do
+    upload("public/assets/assets.tgz", release_path + '/assets.tgz')
+    run "cd #{release_path}; tar zxvf assets.tgz; rm assets.tgz"
+    run_locally("rm -rf public/assets/*")
+  end
+end
+
+before "deploy:update_code", "assets:compress_assets"
+after "deploy:create_symlink", "assets:upload_assets"
