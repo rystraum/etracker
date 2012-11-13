@@ -6,7 +6,6 @@ class Ability
       can :manage, User
       can :manage, Unit
       can :manage, Location
-      can :manage, Log
     else
       can :read, Log do |log|
         user.units.include? log.unit_id
