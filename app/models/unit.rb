@@ -29,14 +29,15 @@ class Unit < ActiveRecord::Base
   belongs_to :item
   has_many :logs
 
-  attr_accessible :aquisition_cost, :aquisition_date, :brand, :condition, :is_active, :model, :serial_no
+  attr_accessible :aquisition_cost, :aquisition_date, :brand, :condition, :is_active, :model, :serial_no, :asset_tag_no
   attr_accessible :barcode_file_name, :item_id, :user_id, :location_id
 
 	has_attached_file :avatar
 	has_attached_file :barcode
 
-  validates_presence_of :user_id, :location_id, :item_id, :unless => :new_record?
-  after_create :generate_barcode_image
+  validates_presence_of :user_id, :location_id, :unless => :new_record?
+  validates_presence_of :asset_tag_no
+  # after_create :generate_barcode_image
 
   scope :unassigned, where(:user_id => nil)
   scope :assigned, where("user_id IS NOT NULL")
