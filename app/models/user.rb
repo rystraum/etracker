@@ -7,9 +7,22 @@ class User < ActiveRecord::Base
 
   # Setup accessible (or protected) attributes for your model
   attr_accessible :email, :password, :password_confirmation, :remember_me
-  attr_accessible :name, :contact_number
+  attr_accessible :name, :contact_number, :unit_attributes
   # attr_accessible :title, :body
 
   has_many :logs
-end
+  has_many :units
+  accepts_nested_attributes_for :units
 
+  def role
+    admin? ? "admin" : "user"
+  end
+
+  def admin?
+    email == "admin@example.com"
+  end
+
+  def display_name
+    email    
+  end
+end
