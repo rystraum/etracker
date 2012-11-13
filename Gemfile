@@ -23,9 +23,12 @@ gem 'activeadmin'
 gem "meta_search",    '>= 1.1.0.pre'
 
 gem 'activeadmin-cancan'
+gem 'aa_associations'
 
 # Gems used only for assets and not required
 # in production environments by default.
+gem 'thin'
+
 group :assets do
   gem 'sass-rails',   '~> 3.2.3'
   gem 'coffee-rails', '~> 3.2.1'
