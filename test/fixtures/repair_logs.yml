@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  supplier: MyString
+  pullout: 2012-12-03
+  returned: 2012-12-03
+  unit_id: 1
+
+two:
+  supplier: MyString
+  pullout: 2012-12-03
+  returned: 2012-12-03
+  unit_id: 1
