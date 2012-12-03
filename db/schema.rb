@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121113192438) do
+ActiveRecord::Schema.define(:version => 20121203122818) do
 
   create_table "active_admin_comments", :force => true do |t|
     t.string   "resource_id",   :null => false
@@ -54,6 +54,33 @@ ActiveRecord::Schema.define(:version => 20121113192438) do
 
   add_index "logs", ["unit_id"], :name => "index_logs_on_unit_id"
   add_index "logs", ["user_id"], :name => "index_logs_on_user_id"
+
+  create_table "repair_logs", :force => true do |t|
+    t.string   "supplier"
+    t.date     "pullout"
+    t.date     "returned"
+    t.integer  "unit_id"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  create_table "service_records", :force => true do |t|
+    t.string   "name"
+    t.text     "comment"
+    t.date     "date_checked"
+    t.integer  "unit_id"
+    t.datetime "created_at",   :null => false
+    t.datetime "updated_at",   :null => false
+  end
+
+  create_table "transfer_records", :force => true do |t|
+    t.string   "name"
+    t.date     "transfer_date"
+    t.integer  "unit_id"
+    t.integer  "location_id"
+    t.datetime "created_at",    :null => false
+    t.datetime "updated_at",    :null => false
+  end
 
   create_table "units", :force => true do |t|
     t.date     "aquisition_date"

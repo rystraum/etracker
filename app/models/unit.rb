@@ -28,6 +28,9 @@ class Unit < ActiveRecord::Base
   belongs_to :location
   belongs_to :item
   has_many :logs
+  has_many :repair_logs
+  has_many :service_records
+  has_many :transfer_records
 
   attr_accessible :aquisition_cost, :aquisition_date, :brand, :condition, :is_active, :model, :serial_no, :asset_tag_no
   attr_accessible :barcode_file_name, :item_id, :user_id, :location_id
