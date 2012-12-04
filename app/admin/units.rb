@@ -1,8 +1,10 @@
 ActiveAdmin.register Unit do
+  menu :priority => 1
+
   index do
     column :id
     column :asset_tag_no
-    column :serial_no
+    column :name
     column :user
     column :location
     default_actions

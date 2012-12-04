@@ -1,4 +1,6 @@
 ActiveAdmin.register Location do
+  menu :priority => 1, :label => "Locations"
+  
   form do |f|
     f.inputs "Location" do 
       f.input :name

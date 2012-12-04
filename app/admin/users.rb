@@ -1,4 +1,6 @@
 ActiveAdmin.register User do
+  menu :priority => 1
+
   filter :email
 
   index do
