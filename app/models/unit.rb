@@ -64,8 +64,12 @@ class Unit < ActiveRecord::Base
     return "logged in" if self.logs.empty? || self.logs.last.status == UnitStatus::In
     return "logged out"
   end
-  def alias
-    return "#{self.id} (#{self.item.name} #{self.brand} #{self.model})"
+  def to_s
+    "#{brand} #{model}"
+  end
+
+  def name
+    to_s
   end
 protected
   def generate_barcode_image
