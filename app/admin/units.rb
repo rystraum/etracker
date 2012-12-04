@@ -37,10 +37,13 @@ ActiveAdmin.register Unit do
 
     f.inputs "Details" do
       f.input :asset_tag_no, label: "Asset Tag Number"
-
       f.input :serial_no, label: "Serial Number"
+
+      f.input :make
       f.input :model
       f.input :brand
+
+      f.input :color
 
       f.input :aquisition_date, label: "Acquisition Date"
       f.input :aquisition_cost, label: "Acquisition Cost"
@@ -48,5 +51,4 @@ ActiveAdmin.register Unit do
 
     f.buttons
   end
-  
 end
