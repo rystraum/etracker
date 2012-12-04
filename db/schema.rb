@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121203122818) do
+ActiveRecord::Schema.define(:version => 20121204051854) do
 
   create_table "active_admin_comments", :force => true do |t|
     t.string   "resource_id",   :null => false
@@ -69,8 +69,9 @@ ActiveRecord::Schema.define(:version => 20121203122818) do
     t.text     "comment"
     t.date     "date_checked"
     t.integer  "unit_id"
-    t.datetime "created_at",   :null => false
-    t.datetime "updated_at",   :null => false
+    t.datetime "created_at",        :null => false
+    t.datetime "updated_at",        :null => false
+    t.float    "present_day_value"
   end
 
   create_table "transfer_records", :force => true do |t|
@@ -105,6 +106,8 @@ ActiveRecord::Schema.define(:version => 20121203122818) do
     t.datetime "created_at",                             :null => false
     t.datetime "updated_at",                             :null => false
     t.string   "asset_tag_no"
+    t.string   "make"
+    t.string   "color"
   end
 
   add_index "units", ["location_id"], :name => "index_units_on_location_id"
