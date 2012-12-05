@@ -9,3 +9,7 @@ Merchandise inventory
 Suppliers database
 Value per product
 Export to CSV
+
+Repairs
+  Before repair picture
+  After repair picture
