@@ -5,8 +5,9 @@ ActiveAdmin.register Unit do
     column :id
     column :asset_tag_no
     column :name
-    column :user
     column :location
+    column :aquisition_cost
+    column :aquisition_date
     default_actions
   end
 
@@ -72,7 +73,7 @@ ActiveAdmin.register Unit do
       f.input :color
 
       f.input :aquisition_date, label: "Acquisition Date"
-      f.input :aquisition_cost, label: "Acquisition Cost"
+      f.input :aquisition_cost, label: "Acquisition Cost (PHP)"
     end
 
     f.buttons
