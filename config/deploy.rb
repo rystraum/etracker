@@ -11,7 +11,7 @@ set :use_sudo, false
 set :rvm_ruby_string, '1.9.3@default'
 set :rvm_type, :system  # Copy the exact line. I really mean :system here
 
-ssh_options[:keys] = [File.join(ENV["HOME"],".ssh","blank.pub")]
+ssh_options[:keys] = [File.join(ENV["HOME"],".ssh","blank")]
 ssh_options[:forward_agent] = true
 
 set :deploy_to, "/home/ubuntu/etracker"
