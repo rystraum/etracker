@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121204051854) do
+ActiveRecord::Schema.define(:version => 20121211064522) do
 
   create_table "active_admin_comments", :force => true do |t|
     t.string   "resource_id",   :null => false
@@ -60,8 +60,9 @@ ActiveRecord::Schema.define(:version => 20121204051854) do
     t.date     "pullout"
     t.date     "returned"
     t.integer  "unit_id"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
+    t.float    "repair_cost"
   end
 
   create_table "service_records", :force => true do |t|
