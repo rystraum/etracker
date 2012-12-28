@@ -32,7 +32,7 @@ class Unit < ActiveRecord::Base
   has_many :service_records
   has_many :transfer_records
 
-  attr_accessible :asset_tag_no, :serial_no
+  attr_accessible :asset_tag_no, :serial_no, :color
   attr_accessible :make, :model, :brand
   attr_accessible :aquisition_cost, :aquisition_date, :condition, :is_active
   attr_accessible :barcode_file_name, :item_id, :user_id, :location_id
