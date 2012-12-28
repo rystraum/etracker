@@ -33,6 +33,9 @@ ActiveAdmin.register Location do
       column :id
       column :asset_tag_no
       column :aquisition_date
+      column :model
+      column :brand
+      column :make
       column "Actions" do |unit|
         link_to "Show", [:admin, unit]
       end
