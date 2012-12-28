@@ -1,7 +1,7 @@
 Fixed assets
 attr_accessible :make, :color, :depreciated_value
 Transfer history
-Picture/s ( 0 to 4)
+Picture/s (0 to 4)
 
 Suppliers database / model
 
@@ -13,3 +13,14 @@ Export to CSV
 Repairs
   Before repair picture
   After repair picture
+
+Consumable inventory
+  Location
+  Requisition module
+  Safety inventory levels
+  Expiration Dates
+
+Superbill
+  List of patients that received medicines
+
+Practice Fusion / Life Data
