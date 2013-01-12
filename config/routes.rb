@@ -11,5 +11,5 @@ Etracker::Application.routes.draw do
   resources :locations
   resources :items
 
-  root :to => 'home#index'
+  root :to => redirect('/admin')
 end
