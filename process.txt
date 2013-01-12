@@ -1,0 +1,34 @@
+Setup:
+  Admin creates a location.
+  For each piece of equipment in the location, admin creates a corresponding unit in the system.
+  An initial audit log is created that requires at least 1 photo of the unit before saving the unit for the first time.
+
+Transfers:
+  > states: pending, received
+  Source location creates a transfer log stating unit, destination location, transfer date
+  Destination location marks the transfer log as received when s/he receives the item
+
+Audits:
+  > can change unit state: good, damaged, missing
+  Auditor creates an audit log: barcode, unit state, comments, images
+
+Maintenance / Repairs:
+  > can change unit state to: good, under routine maintenance, under repair
+  Maintenance person creates a maintenance log: 
+    supplier (defaults to unit's supplier), name of person who did maintenance, start date/time, end date/time
+
+  If unit's last maintenance log is more than unit.maintenance_schedule days ago, unit appears in location manager's dashboard as scheduled for maintenance.
+
+  (IB) Start Maintenance: change unit state to under maintenance
+  (IB) End Maintenance: change unit state to good / overridden state
+
+(IB) Condemn:
+  > will change unit state to condemned
+
+Accounts
+  Location Manager
+    > Transfers
+  Auditors
+    > Audit Logs
+  Maintenance People
+    > Maintenance Logs
