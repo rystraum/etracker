@@ -5,7 +5,7 @@ Process:
     An initial audit log is created that requires at least 1 photo of the unit before saving the unit for the first time.
 
   Pull out requests
-    > can change unit state: available, pulled out
+    > can change unit state of availability: available, pulled out
     Fields: Person that requested the pull out, Authorizing person, Event or purpose, Pull out date, Return date
 
   Transfers:
@@ -42,9 +42,14 @@ Accounts:
 
 Models:
   Unit
+    > availability_state
+    > unit_state
+
   Supplier
   AuditLog
   MaintenanceRepairLog
+    > supplier: supplier for the repairs / maintenance, defaults to unit supplier
+    
   TransferLog
   PullOutLogs
   PullOutRequestLogs
