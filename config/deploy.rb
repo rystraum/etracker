@@ -14,8 +14,11 @@ set :rvm_type, :system  # Copy the exact line. I really mean :system here
 ssh_options[:keys] = [File.join(ENV["HOME"],".ssh","blank")]
 ssh_options[:forward_agent] = true
 
-set :deploy_to, "/home/ubuntu/etracker"
-set :user, "ubuntu"
+# set :deploy_to, "/home/ubuntu/etracker"
+# set :user, "ubuntu"
+
+set :deploy_to, "/var/www/etracker"
+set :user, "root"
 
 # role :web, "themagisproject.tv"                          # Your HTTP server, Apache/etc
 # role :app, "themagisproject.tv"                          # This may be the same as your `Web` server
@@ -24,8 +27,8 @@ set :user, "ubuntu"
 # ssh_options[:keys] = [File.join(ENV["HOME"], ".ssh", "blank")]
 
 set :rails_env, "production"
-set :domain, "ainventory.loudcloud.ph"
-server "ainventory.loudcloud.ph", :app, :web, :db, :primary => true 
+set :domain, "fixed-asset.loudcloud.ph"
+server "fixed-asset.loudcloud.ph", :app, :web, :db, :primary => true 
  
 namespace :deploy do
   task :restart, :roles => :web do
