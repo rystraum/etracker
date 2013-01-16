@@ -4,6 +4,10 @@ Process:
     For each piece of equipment in the location, admin creates a corresponding unit in the system.
     An initial audit log is created that requires at least 1 photo of the unit before saving the unit for the first time.
 
+  Pull out requests
+    > can change unit state: available, pulled out
+    Fields: Person that requested the pull out, Authorizing person, Event or purpose, Pull out date, Return date
+
   Transfers:
     > states: pending, received
     Source location creates a transfer log stating unit, destination location, transfer date
@@ -15,7 +19,7 @@ Process:
     Auditor creates an audit log: barcode, unit state, comments, images for each item in location
     After auditor has finished a location, he goes over the list of items under location and see if any item has a different "last audited" date and can mark it as missing
 
-  Maintenance / Repairs:
+  (HP) Maintenance / Repairs:
     > can change unit state to: good, under routine maintenance, under repair
     Maintenance person creates a maintenance log: 
       supplier (defaults to unit's supplier), name of person who did maintenance, start date/time, end date/time
@@ -42,6 +46,8 @@ Models:
   AuditLog
   MaintenanceRepairLog
   TransferLog
+  PullOutLogs
+  PullOutRequestLogs
 
 Screens:
   Location#show
