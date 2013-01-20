@@ -31,7 +31,10 @@ class Unit < ActiveRecord::Base
   has_many :repair_logs
   has_many :service_records
   has_many :transfer_records
+  has_many :file_assets, :dependent => :destroy
+  accepts_nested_attributes_for :file_assets, :allow_destroy => true
 
+  attr_accessible :file_assets_attributes
   attr_accessible :asset_tag_no, :serial_no, :color
   attr_accessible :make, :model, :brand
   attr_accessible :aquisition_cost, :aquisition_date, :condition, :is_active
