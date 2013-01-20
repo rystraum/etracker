@@ -6,6 +6,7 @@ ActiveAdmin.register Unit do
     column :asset_tag_no
     column :name
     column :location
+    column :state
     column :aquisition_cost
     column :aquisition_date
     default_actions
@@ -74,6 +75,12 @@ ActiveAdmin.register Unit do
 
       f.input :aquisition_date, label: "Acquisition Date"
       f.input :aquisition_cost, label: "Acquisition Cost (PHP)"
+    end
+
+    f.inputs "Attachment" do
+      f.has_many :file_assets do |a|
+        a.input :photo, :as => :file, :hint => a.template.image_tag(a.object.photo.url(:medium))
+      end
     end
 
     f.buttons

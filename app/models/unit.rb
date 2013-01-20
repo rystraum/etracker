@@ -29,6 +29,7 @@ class Unit < ActiveRecord::Base
   belongs_to :item
   has_many :logs
   has_many :repair_logs
+  has_many :maintenance_repair_logs
   has_many :service_records
   has_many :transfer_records
   has_many :file_assets, :dependent => :destroy
@@ -36,7 +37,7 @@ class Unit < ActiveRecord::Base
 
   attr_accessible :file_assets_attributes
   attr_accessible :asset_tag_no, :serial_no, :color
-  attr_accessible :make, :model, :brand
+  attr_accessible :make, :model, :brand, :state
   attr_accessible :aquisition_cost, :aquisition_date, :condition, :is_active
   attr_accessible :barcode_file_name, :item_id, :user_id, :location_id
 
@@ -46,6 +47,7 @@ class Unit < ActiveRecord::Base
   validates_presence_of :user_id, :location_id, :unless => :new_record?
   validates_presence_of :asset_tag_no
   # after_create :generate_barcode_image
+  after_create :set_unit_status
 
   scope :unassigned, where(:user_id => nil)
   scope :assigned, where("user_id IS NOT NULL")
@@ -91,6 +93,10 @@ protected
     else
       return false
     end
+  end
 
+  def set_unit_status
+    self.state = "Good"
+    self.save!
   end
 end
