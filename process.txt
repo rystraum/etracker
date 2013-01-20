@@ -7,6 +7,9 @@ Process:
   Pull out requests
     > can change unit state of availability: available, pulled out
     Fields: Person that requested the pull out, Authorizing person, Event or purpose, Pull out date, Return date
+    Can only edit return date
+    If return date is filled up, unit state changes to available
+    If return date is blank/empty, unit state changes to pulled out
 
   Transfers:
     > states: pending, received
