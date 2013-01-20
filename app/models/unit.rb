@@ -28,13 +28,11 @@ class Unit < ActiveRecord::Base
   belongs_to :location
   belongs_to :item
   has_many :logs
-  has_many :repair_logs
   has_many :maintenance_repair_logs
-  has_many :service_records
   has_many :transfer_records
   has_many :file_assets, :dependent => :destroy
+  
   accepts_nested_attributes_for :file_assets, :allow_destroy => true
-
   attr_accessible :file_assets_attributes
   attr_accessible :asset_tag_no, :serial_no, :color
   attr_accessible :make, :model, :brand, :state
