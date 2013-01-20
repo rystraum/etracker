@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130120134232) do
+ActiveRecord::Schema.define(:version => 20130120204023) do
 
   create_table "active_admin_comments", :force => true do |t|
     t.string   "resource_id",   :null => false
@@ -67,6 +67,16 @@ ActiveRecord::Schema.define(:version => 20130120134232) do
   add_index "logs", ["unit_id"], :name => "index_logs_on_unit_id"
   add_index "logs", ["user_id"], :name => "index_logs_on_user_id"
 
+  create_table "maintenance_repair_logs", :force => true do |t|
+    t.string   "supplier"
+    t.integer  "personnel_id"
+    t.date     "start_date"
+    t.date     "end_date"
+    t.integer  "unit_id"
+    t.datetime "created_at",   :null => false
+    t.datetime "updated_at",   :null => false
+  end
+
   create_table "repair_logs", :force => true do |t|
     t.string   "supplier"
     t.date     "pullout"
@@ -121,6 +131,7 @@ ActiveRecord::Schema.define(:version => 20130120134232) do
     t.string   "asset_tag_no"
     t.string   "make"
     t.string   "color"
+    t.string   "state"
   end
 
   add_index "units", ["location_id"], :name => "index_units_on_location_id"

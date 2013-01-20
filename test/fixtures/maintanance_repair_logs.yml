@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  supplier: MyString
+  personnel_id: 1
+  start_date: 2013-01-21
+  end_date: 2013-01-21
+
+two:
+  supplier: MyString
+  personnel_id: 1
+  start_date: 2013-01-21
+  end_date: 2013-01-21

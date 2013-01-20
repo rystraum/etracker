@@ -6,9 +6,8 @@ class Ability
       can :manage, User
       can :manage, Unit
       can :manage, Location
-      can :manage, RepairLog
-      can :manage, ServiceRecord
       can :manage, TransferRecord
+      can :manage, MaintenanceRepairLog
     else
       can :read, Log do |log|
         user.units.include? log.unit_id
