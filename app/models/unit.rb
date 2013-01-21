@@ -28,9 +28,10 @@ class Unit < ActiveRecord::Base
   belongs_to :location
   belongs_to :item
   has_many :logs
+  has_many :pullout_logs
   has_many :maintenance_repair_logs
   has_many :transfer_records
-  has_many :file_assets, :dependent => :destroy
+  has_many :file_assets, :as => :picture, :dependent => :destroy
   
   accepts_nested_attributes_for :file_assets, :allow_destroy => true
   attr_accessible :file_assets_attributes
