@@ -1,9 +1,11 @@
 ActiveAdmin.register MaintenanceRepairLog do  
   member_action :return, :method => :put do
     log = MaintenanceRepairLog.find(params[:id])
-    log.end_date = Date.today
     log.unit.state = "Good"
     log.unit.save!
+    
+    log.end_date = Date.today
+    log.save!
 
     redirect_to :action => :show
   end
@@ -12,7 +14,10 @@ ActiveAdmin.register MaintenanceRepairLog do
     log = MaintenanceRepairLog.find(params[:id])
     log.unit.state = "Overriden"
     log.unit.save!
+    
     log.end_date = Date.today
+    log.save!
+    
     redirect_to :action => :show
   end
 
@@ -21,6 +26,7 @@ ActiveAdmin.register MaintenanceRepairLog do
       log.unit.name
     end
     column :supplier
+    column :personnel
     column :start_date
     column :end_date
     column "" do |log|
@@ -32,8 +38,13 @@ ActiveAdmin.register MaintenanceRepairLog do
   end
 
   form do |f|
-    f.input :unit
-    f.input :supplier
-    f.input :start_date, label: "Start Date"
+    f.inputs "Input" do
+      f.input :unit
+      f.input :supplier
+      f.input :start_date
+      f.input :personnel_id, :as => :hidden, :value => proc{current_user.id}.call
+    end
+
+    f.buttons
   end
-end
+end 

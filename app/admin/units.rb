@@ -37,24 +37,6 @@ ActiveAdmin.register Unit do
         column :transfer_date
       end
     end
-
-    h3 "Maintenance History"
-    panel "Maintenance History" do
-      table_for unit.service_records.order("date_checked desc") do
-        column :date_checked
-        column :name
-        column :comment
-      end
-    end
-
-    h3 "Repair Logs"
-    panel "Repair Logs" do
-      table_for unit.repair_logs.order("pullout desc") do
-        column :pullout
-        column :returned
-        column :supplier_name
-      end
-    end
   end
 
   form do |f|
