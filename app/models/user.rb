@@ -12,6 +12,9 @@ class User < ActiveRecord::Base
 
   has_many :logs
   has_many :units
+  has_many :maintenance_repair_logs
+  has_many :pullout_logs
+  has_many :audit_logs
   accepts_nested_attributes_for :units
 
   def role

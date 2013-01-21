@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130120204023) do
+ActiveRecord::Schema.define(:version => 20130121174009) do
 
   create_table "active_admin_comments", :force => true do |t|
     t.string   "resource_id",   :null => false
@@ -28,17 +28,29 @@ ActiveRecord::Schema.define(:version => 20130120204023) do
   add_index "active_admin_comments", ["namespace"], :name => "index_active_admin_comments_on_namespace"
   add_index "active_admin_comments", ["resource_type", "resource_id"], :name => "index_admin_notes_on_resource_type_and_resource_id"
 
-  create_table "file_assets", :force => true do |t|
+  create_table "audit_logs", :force => true do |t|
     t.integer  "unit_id"
+    t.string   "state"
+    t.text     "comments"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+    t.integer  "auditor_id"
+  end
+
+  add_index "audit_logs", ["unit_id"], :name => "index_audit_logs_on_unit_id"
+
+  create_table "file_assets", :force => true do |t|
+    t.integer  "picture_id"
     t.datetime "created_at",         :null => false
     t.datetime "updated_at",         :null => false
     t.string   "photo_file_name"
     t.string   "photo_content_type"
     t.integer  "photo_file_size"
     t.datetime "photo_updated_at"
+    t.string   "picture_type"
   end
 
-  add_index "file_assets", ["unit_id"], :name => "index_file_assets_on_unit_id"
+  add_index "file_assets", ["picture_id"], :name => "index_file_assets_on_unit_id"
 
   create_table "items", :force => true do |t|
     t.string   "name"
@@ -69,6 +81,7 @@ ActiveRecord::Schema.define(:version => 20130120204023) do
 
   create_table "maintenance_repair_logs", :force => true do |t|
     t.string   "supplier"
+    t.string   "type"
     t.integer  "personnel_id"
     t.date     "start_date"
     t.date     "end_date"
@@ -77,25 +90,18 @@ ActiveRecord::Schema.define(:version => 20130120204023) do
     t.datetime "updated_at",   :null => false
   end
 
-  create_table "repair_logs", :force => true do |t|
-    t.string   "supplier"
-    t.date     "pullout"
-    t.date     "returned"
+  create_table "pullout_logs", :force => true do |t|
     t.integer  "unit_id"
-    t.datetime "created_at",  :null => false
-    t.datetime "updated_at",  :null => false
-    t.float    "repair_cost"
+    t.integer  "requesting_user_id"
+    t.integer  "authorizing_user_id"
+    t.text     "purpose"
+    t.date     "pullout_date"
+    t.date     "return_date"
+    t.datetime "created_at",          :null => false
+    t.datetime "updated_at",          :null => false
   end
 
-  create_table "service_records", :force => true do |t|
-    t.string   "name"
-    t.text     "comment"
-    t.date     "date_checked"
-    t.integer  "unit_id"
-    t.datetime "created_at",        :null => false
-    t.datetime "updated_at",        :null => false
-    t.float    "present_day_value"
-  end
+  add_index "pullout_logs", ["unit_id"], :name => "index_pullout_logs_on_unit_id"
 
   create_table "transfer_records", :force => true do |t|
     t.string   "name"

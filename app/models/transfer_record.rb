@@ -5,8 +5,8 @@ class TransferRecord < ActiveRecord::Base
   delegate :name, to: :location, prefix: true
   default_scope includes(:location)
 
-  before_save :transfer_date_check
-  after_save :update_unit_location
+  #before_save :transfer_date_check
+  #after_save :update_unit_location
 
   def update_unit_location
     unit.location = location

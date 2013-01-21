@@ -8,6 +8,8 @@ class Ability
       can :manage, Location
       can :manage, TransferRecord
       can :manage, MaintenanceRepairLog
+      can :manage, PulloutLog
+      can :manage, AuditLog
     else
       can :read, Log do |log|
         user.units.include? log.unit_id
