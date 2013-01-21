@@ -1,0 +1,17 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  unit: 
+  requesting_user_id: 1
+  authorizing_user_id: 1
+  purpose: MyText
+  pullout_date: 2013-01-21
+  return_date: 2013-01-21
+
+two:
+  unit: 
+  requesting_user_id: 1
+  authorizing_user_id: 1
+  purpose: MyText
+  pullout_date: 2013-01-21
+  return_date: 2013-01-21
