@@ -57,6 +57,7 @@ ActiveAdmin.register Unit do
 
       f.input :aquisition_date, label: "Acquisition Date"
       f.input :aquisition_cost, label: "Acquisition Cost (PHP)"
+      f.input :cycle, label: "Maintenance Cycle(days)"
     end
 
     f.inputs "Attachment" do
