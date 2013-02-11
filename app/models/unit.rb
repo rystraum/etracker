@@ -83,10 +83,10 @@ class Unit < ActiveRecord::Base
   end
 
   def is_overdue?
-    if last_maintenance.end_date.nil?
+    if last_maintenance.nil?
       false
     else
-      last_maintenance.end_date + cycle < Date.today ? true:false
+      last_maintenance.end_date.nil? ? false: last_maintenance.end_date + cycle < Date.today ? true:false
     end
   end
 
